@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alphonse.accountmanage.dao.AccountPlatformMapper">
+  <resultMap id="BaseResultMap" type="com.alphonse.accountmanage.entity.AccountPlatform">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="platformname" jdbcType="VARCHAR" property="platformname" />
+    <result column="platformtype" jdbcType="VARCHAR" property="platformtype" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="ext3" jdbcType="VARCHAR" property="ext3" />
+    <result column="ext4" jdbcType="VARCHAR" property="ext4" />
+    <result column="ext5" jdbcType="VARCHAR" property="ext5" />
+    <result column="ext6" jdbcType="VARCHAR" property="ext6" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, platformname, platformtype, ext1, ext2, ext3, ext4, ext5, ext6
+  </sql>
+  <select id="selectByExample" parameterType="com.alphonse.accountmanage.entity.AccountPlatformExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from account_platform
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account_platform
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from account_platform
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.alphonse.accountmanage.entity.AccountPlatformExample">
+    delete from account_platform
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.alphonse.accountmanage.entity.AccountPlatform">
+    insert into account_platform (id, platformname, platformtype, 
+      ext1, ext2, ext3, ext4, 
+      ext5, ext6)
+    values (#{id,jdbcType=INTEGER}, #{platformname,jdbcType=VARCHAR}, #{platformtype,jdbcType=VARCHAR}, 
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, 
+      #{ext5,jdbcType=VARCHAR}, #{ext6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alphonse.accountmanage.entity.AccountPlatform">
+    insert into account_platform
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="platformname != null">
+        platformname,
+      </if>
+      <if test="platformtype != null">
+        platformtype,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="ext3 != null">
+        ext3,
+      </if>
+      <if test="ext4 != null">
+        ext4,
+      </if>
+      <if test="ext5 != null">
+        ext5,
+      </if>
+      <if test="ext6 != null">
+        ext6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platformname != null">
+        #{platformname,jdbcType=VARCHAR},
+      </if>
+      <if test="platformtype != null">
+        #{platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null">
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null">
+        #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null">
+        #{ext5,jdbcType=VARCHAR},
+      </if>
+      <if test="ext6 != null">
+        #{ext6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.alphonse.accountmanage.entity.AccountPlatformExample" resultType="java.lang.Long">
+    select count(*) from account_platform
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update account_platform
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformname != null">
+        platformname = #{record.platformname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformtype != null">
+        platformtype = #{record.platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext1 != null">
+        ext1 = #{record.ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext2 != null">
+        ext2 = #{record.ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext3 != null">
+        ext3 = #{record.ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext4 != null">
+        ext4 = #{record.ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext5 != null">
+        ext5 = #{record.ext5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext6 != null">
+        ext6 = #{record.ext6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update account_platform
+    set id = #{record.id,jdbcType=INTEGER},
+      platformname = #{record.platformname,jdbcType=VARCHAR},
+      platformtype = #{record.platformtype,jdbcType=VARCHAR},
+      ext1 = #{record.ext1,jdbcType=VARCHAR},
+      ext2 = #{record.ext2,jdbcType=VARCHAR},
+      ext3 = #{record.ext3,jdbcType=VARCHAR},
+      ext4 = #{record.ext4,jdbcType=VARCHAR},
+      ext5 = #{record.ext5,jdbcType=VARCHAR},
+      ext6 = #{record.ext6,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alphonse.accountmanage.entity.AccountPlatform">
+    update account_platform
+    <set>
+      <if test="platformname != null">
+        platformname = #{platformname,jdbcType=VARCHAR},
+      </if>
+      <if test="platformtype != null">
+        platformtype = #{platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null">
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null">
+        ext4 = #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null">
+        ext5 = #{ext5,jdbcType=VARCHAR},
+      </if>
+      <if test="ext6 != null">
+        ext6 = #{ext6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alphonse.accountmanage.entity.AccountPlatform">
+    update account_platform
+    set platformname = #{platformname,jdbcType=VARCHAR},
+      platformtype = #{platformtype,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR},
+      ext4 = #{ext4,jdbcType=VARCHAR},
+      ext5 = #{ext5,jdbcType=VARCHAR},
+      ext6 = #{ext6,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectPlaceType" resultType="com.alphonse.accountmanage.entity.AccountPlatform">
+  	select * from account_platform
+  </select>
+</mapper>

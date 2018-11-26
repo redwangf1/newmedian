@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/plugins/bootstrap-input/fileinput.min.css" rel="stylesheet">
+    <link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>模板下载</h5>
+                       
+                    </div>
+                    <div class="ibox-content">
+                      <a href="/file/model.xlsx"><button type="button" class="btn btn-w-m btn-primary"  >点击下载上传模板</button></a>
+                        
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                                <div class="ibox-content">
+                                
+                                <div class="file-loading">
+    <input id="fileinputs" name="fileinputn" type="file" class="file" multiple data-language='zh' data-show-Preview='false' data-upload-Url='/upload' >
+</div>
+            
+
+</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+
+
+
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+
+
+    <!-- DROPZONE -->
+    <script src="js/plugins/bootstrap-input/fileinput.min.js"></script>
+
+    <script src="js/plugins/bootstrap-input/zh.js"></script>
+
+    <script>
+    $("#fileinputs").on("fileuploaded", function (event, data, previewId, index) {
+        var response = data.response;
+        alert(response.filePath);
+        $("#fileMd5").val(response.fileMd5);
+        $("#version").val(response.newVersionName);
+        $("#url").val(response.filePath);
+       
+    });
+    
+    
+ //   $(function () {
+        //0.初始化fileinput
+  //      var oFileInput = new FileInput();
+   //     oFileInput.Init("txt_file", "/upload");
+ //   });
+    
+  //初始化fileinput
+   // var FileInput = function () {
+      //  var oFile = new Object();
+
+        //初始化fileinput控件（第一次初始化）
+     //   oFile.Init = function(ctrlName, uploadUrl) {
+    //    var control = $('#' + ctrlName);
+
+        //初始化上传控件的样式
+   //     control.fileinput({
+    //        language: 'zh', //设置语言
+    //        uploadUrl: uploadUrl, //上传的地址
+    //        allowedFileExtensions: ['jpg', 'gif', 'xlsx'],//接收的文件后缀
+    //        showUpload: true, //是否显示上传按钮
+   //         showCaption: false,//是否显示标题
+  //          browseClass: "btn btn-primary", //按钮样式     
+            //dropZoneEnabled: false,//是否显示拖拽区域
+            //minImageWidth: 50, //图片的最小宽度
+            //minImageHeight: 50,//图片的最小高度
+            //maxImageWidth: 1000,//图片的最大宽度
+            //maxImageHeight: 1000,//图片的最大高度
+            //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+            //minFileCount: 0,
+    //        maxFileCount: 10, //表示允许同时上传的最大文件个数
+   //         enctype: 'multipart/form-data',
+   //         validateInitialCount:true,
+   //         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+   //         msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+   //     });
+
+        //导入文件上传完成之后的事件
+   //     $("#txt_file").on("fileuploaded", function (event, data, previewId, index) {
+          //  $("#myModal").modal("hide");
+    //        var data = data.response.lstOrderImport;
+    //       	alert(data)
+      //      //1.初始化表格
+            
+   //     });
+   // }
+   //     return oFile;
+   // };
+    </script>
+
+    <!--统计代码，可删除-->
+
+</body>
+
+</html>

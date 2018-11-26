@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alphonse.accountmanage.dao.CommonLogMapper">
+  <resultMap id="BaseResultMap" type="com.alphonse.accountmanage.entity.CommonLog">
+    <id column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="log_name" jdbcType="VARCHAR" property="logName" />
+    <result column="log_username" jdbcType="VARCHAR" property="logUsername" />
+    <result column="log_class" jdbcType="VARCHAR" property="logClass" />
+    <result column="log_mothod" jdbcType="VARCHAR" property="logMothod" />
+    <result column="log_createtime" jdbcType="TIMESTAMP" property="logCreatetime" />
+    <result column="log_level" jdbcType="VARCHAR" property="logLevel" />
+    <result column="log_msg" jdbcType="VARCHAR" property="logMsg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    log_id, log_name, log_username, log_class, log_mothod, log_createtime, log_level, 
+    log_msg
+  </sql>
+  <select id="selectByExample" parameterType="com.alphonse.accountmanage.entity.CommonLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from common_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from common_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.alphonse.accountmanage.entity.CommonLogExample">
+    delete from common_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.alphonse.accountmanage.entity.CommonLog">
+    insert into common_log (log_id, log_name, log_username, 
+      log_class, log_mothod, log_createtime, 
+      log_level, log_msg)
+    values (#{logId,jdbcType=INTEGER}, #{logName,jdbcType=VARCHAR}, #{logUsername,jdbcType=VARCHAR}, 
+      #{logClass,jdbcType=VARCHAR}, #{logMothod,jdbcType=VARCHAR}, #{logCreatetime,jdbcType=TIMESTAMP}, 
+      #{logLevel,jdbcType=VARCHAR}, #{logMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alphonse.accountmanage.entity.CommonLog">
+    insert into common_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="logName != null">
+        log_name,
+      </if>
+      <if test="logUsername != null">
+        log_username,
+      </if>
+      <if test="logClass != null">
+        log_class,
+      </if>
+      <if test="logMothod != null">
+        log_mothod,
+      </if>
+      <if test="logCreatetime != null">
+        log_createtime,
+      </if>
+      <if test="logLevel != null">
+        log_level,
+      </if>
+      <if test="logMsg != null">
+        log_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="logName != null">
+        #{logName,jdbcType=VARCHAR},
+      </if>
+      <if test="logUsername != null">
+        #{logUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="logClass != null">
+        #{logClass,jdbcType=VARCHAR},
+      </if>
+      <if test="logMothod != null">
+        #{logMothod,jdbcType=VARCHAR},
+      </if>
+      <if test="logCreatetime != null">
+        #{logCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logLevel != null">
+        #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logMsg != null">
+        #{logMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.alphonse.accountmanage.entity.CommonLogExample" resultType="java.lang.Long">
+    select count(*) from common_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_log
+    <set>
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logName != null">
+        log_name = #{record.logName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logUsername != null">
+        log_username = #{record.logUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logClass != null">
+        log_class = #{record.logClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logMothod != null">
+        log_mothod = #{record.logMothod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logCreatetime != null">
+        log_createtime = #{record.logCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logLevel != null">
+        log_level = #{record.logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logMsg != null">
+        log_msg = #{record.logMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      log_name = #{record.logName,jdbcType=VARCHAR},
+      log_username = #{record.logUsername,jdbcType=VARCHAR},
+      log_class = #{record.logClass,jdbcType=VARCHAR},
+      log_mothod = #{record.logMothod,jdbcType=VARCHAR},
+      log_createtime = #{record.logCreatetime,jdbcType=TIMESTAMP},
+      log_level = #{record.logLevel,jdbcType=VARCHAR},
+      log_msg = #{record.logMsg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alphonse.accountmanage.entity.CommonLog">
+    update common_log
+    <set>
+      <if test="logName != null">
+        log_name = #{logName,jdbcType=VARCHAR},
+      </if>
+      <if test="logUsername != null">
+        log_username = #{logUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="logClass != null">
+        log_class = #{logClass,jdbcType=VARCHAR},
+      </if>
+      <if test="logMothod != null">
+        log_mothod = #{logMothod,jdbcType=VARCHAR},
+      </if>
+      <if test="logCreatetime != null">
+        log_createtime = #{logCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logLevel != null">
+        log_level = #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logMsg != null">
+        log_msg = #{logMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alphonse.accountmanage.entity.CommonLog">
+    update common_log
+    set log_name = #{logName,jdbcType=VARCHAR},
+      log_username = #{logUsername,jdbcType=VARCHAR},
+      log_class = #{logClass,jdbcType=VARCHAR},
+      log_mothod = #{logMothod,jdbcType=VARCHAR},
+      log_createtime = #{logCreatetime,jdbcType=TIMESTAMP},
+      log_level = #{logLevel,jdbcType=VARCHAR},
+      log_msg = #{logMsg,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>

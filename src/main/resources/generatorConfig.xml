@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context id="context1" targetRuntime="MyBatis3">
+        <!-- 生成的pojo，将implements Serializable -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://127.0.0.1:3306/newmedia?characterEncoding=utf8"
+            userId="root" password="root" />
+        <javaModelGenerator targetPackage="com.alphonse.accountmanage.entity"
+            targetProject="accountmanage" />
+        <sqlMapGenerator targetPackage="com.alphonse.accountmanage.entity"
+            targetProject="accountmanage" />
+        <javaClientGenerator targetPackage="com.alphonse.accountmanage.dao"
+            targetProject="accountmanage" type="XMLMAPPER" />
+            <!--
+        <table  tableName="account_info"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountInfo"></table>
+        <table  tableName="account_institution"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountInstitution"></table>
+       <table  tableName="account_level"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountLevel"></table>
+       <table  tableName="account_log"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountLog"></table>
+      <table  tableName="account_status"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountStatus"></table>
+       <table  tableName="common_log"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="CommonLog"></table>
+       <table  tableName="common_user"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="CommonUser"></table>
+       
+        <table  tableName="account_institution_type"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountInstitutionType"></table>     
+        <table  tableName="account_platform"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="AccountPlatform"></table>     
+            -->
+        <table  tableName="common_user"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true" domainObjectName="CommonUser"></table>     
+            
+            
+    </context>
+</generatorConfiguration>

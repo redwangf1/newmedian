@@ -1,0 +1,445 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alphonse.accountmanage.dao.CommonUserMapper">
+  <resultMap id="BaseResultMap" type="com.alphonse.accountmanage.entity.CommonUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="userpassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="usercity" jdbcType="VARCHAR" property="usercity" />
+    <result column="usersex" jdbcType="INTEGER" property="usersex" />
+    <result column="useraddress" jdbcType="VARCHAR" property="useraddress" />
+    <result column="useremail" jdbcType="VARCHAR" property="useremail" />
+    <result column="usertype" jdbcType="VARCHAR" property="usertype" />
+    <result column="usercreatetime" jdbcType="TIMESTAMP" property="usercreatetime" />
+    <result column="userlogintime" jdbcType="TIMESTAMP" property="userlogintime" />
+    <result column="userphone" jdbcType="VARCHAR" property="userphone" />
+    <result column="userinstitution" jdbcType="VARCHAR" property="userinstitution" />
+    <result column="userstatus" jdbcType="INTEGER" property="userstatus" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="ext3" jdbcType="VARCHAR" property="ext3" />
+    <result column="ext4" jdbcType="VARCHAR" property="ext4" />
+    <result column="ext5" jdbcType="VARCHAR" property="ext5" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, userid, username, userpassword, usercity, usersex, useraddress, useremail, usertype, 
+    usercreatetime, userlogintime, userphone, userinstitution, userstatus, ext1, ext2, 
+    ext3, ext4, ext5
+  </sql>
+  <select id="selectByExample" parameterType="com.alphonse.accountmanage.entity.CommonUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from common_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="selectByUsername" parameterType="java.lang.String" resultType="com.alphonse.accountmanage.entity.CommonUser">
+    select 
+    <include refid="Base_Column_List" />
+    from common_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from common_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.alphonse.accountmanage.entity.CommonUserExample">
+    delete from common_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.alphonse.accountmanage.entity.CommonUser">
+    insert into common_user (id, userid, username, 
+      userpassword, usercity, usersex, 
+      useraddress, useremail, usertype, 
+      usercreatetime, userlogintime, userphone, 
+      userinstitution, userstatus, ext1, 
+      ext2, ext3, ext4, ext5
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{userpassword,jdbcType=VARCHAR}, #{usercity,jdbcType=VARCHAR}, #{usersex,jdbcType=INTEGER}, 
+      #{useraddress,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR}, #{usertype,jdbcType=VARCHAR}, 
+      #{usercreatetime,jdbcType=TIMESTAMP}, #{userlogintime,jdbcType=TIMESTAMP}, #{userphone,jdbcType=VARCHAR}, 
+      #{userinstitution,jdbcType=VARCHAR}, #{userstatus,jdbcType=INTEGER}, #{ext1,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, #{ext5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.alphonse.accountmanage.entity.CommonUser">
+    insert into common_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userpassword != null">
+        userpassword,
+      </if>
+      <if test="usercity != null">
+        usercity,
+      </if>
+      <if test="usersex != null">
+        usersex,
+      </if>
+      <if test="useraddress != null">
+        useraddress,
+      </if>
+      <if test="useremail != null">
+        useremail,
+      </if>
+      <if test="usertype != null">
+        usertype,
+      </if>
+      <if test="usercreatetime != null">
+        usercreatetime,
+      </if>
+      <if test="userlogintime != null">
+        userlogintime,
+      </if>
+      <if test="userphone != null">
+        userphone,
+      </if>
+      <if test="userinstitution != null">
+        userinstitution,
+      </if>
+      <if test="userstatus != null">
+        userstatus,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="ext3 != null">
+        ext3,
+      </if>
+      <if test="ext4 != null">
+        ext4,
+      </if>
+      <if test="ext5 != null">
+        ext5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usercity != null">
+        #{usercity,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null">
+        #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="useraddress != null">
+        #{useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null">
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="usercreatetime != null">
+        #{usercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userlogintime != null">
+        #{userlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userphone != null">
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userinstitution != null">
+        #{userinstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null">
+        #{userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null">
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null">
+        #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null">
+        #{ext5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.alphonse.accountmanage.entity.CommonUserExample" resultType="java.lang.Long">
+    select count(*) from common_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpassword != null">
+        userpassword = #{record.userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercity != null">
+        usercity = #{record.usercity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usersex != null">
+        usersex = #{record.usersex,jdbcType=INTEGER},
+      </if>
+      <if test="record.useraddress != null">
+        useraddress = #{record.useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useremail != null">
+        useremail = #{record.useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertype != null">
+        usertype = #{record.usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercreatetime != null">
+        usercreatetime = #{record.usercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userlogintime != null">
+        userlogintime = #{record.userlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userphone != null">
+        userphone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userinstitution != null">
+        userinstitution = #{record.userinstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userstatus != null">
+        userstatus = #{record.userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ext1 != null">
+        ext1 = #{record.ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext2 != null">
+        ext2 = #{record.ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext3 != null">
+        ext3 = #{record.ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext4 != null">
+        ext4 = #{record.ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext5 != null">
+        ext5 = #{record.ext5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_user
+    set id = #{record.id,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      userpassword = #{record.userpassword,jdbcType=VARCHAR},
+      usercity = #{record.usercity,jdbcType=VARCHAR},
+      usersex = #{record.usersex,jdbcType=INTEGER},
+      useraddress = #{record.useraddress,jdbcType=VARCHAR},
+      useremail = #{record.useremail,jdbcType=VARCHAR},
+      usertype = #{record.usertype,jdbcType=VARCHAR},
+      usercreatetime = #{record.usercreatetime,jdbcType=TIMESTAMP},
+      userlogintime = #{record.userlogintime,jdbcType=TIMESTAMP},
+      userphone = #{record.userphone,jdbcType=VARCHAR},
+      userinstitution = #{record.userinstitution,jdbcType=VARCHAR},
+      userstatus = #{record.userstatus,jdbcType=INTEGER},
+      ext1 = #{record.ext1,jdbcType=VARCHAR},
+      ext2 = #{record.ext2,jdbcType=VARCHAR},
+      ext3 = #{record.ext3,jdbcType=VARCHAR},
+      ext4 = #{record.ext4,jdbcType=VARCHAR},
+      ext5 = #{record.ext5,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alphonse.accountmanage.entity.CommonUser">
+    update common_user
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        userpassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usercity != null">
+        usercity = #{usercity,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null">
+        usersex = #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="useraddress != null">
+        useraddress = #{useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null">
+        useremail = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        usertype = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="usercreatetime != null">
+        usercreatetime = #{usercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userlogintime != null">
+        userlogintime = #{userlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userphone != null">
+        userphone = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userinstitution != null">
+        userinstitution = #{userinstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null">
+        userstatus = #{userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null">
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null">
+        ext4 = #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null">
+        ext5 = #{ext5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alphonse.accountmanage.entity.CommonUser">
+    update common_user
+    set userid = #{userid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      userpassword = #{userpassword,jdbcType=VARCHAR},
+      usercity = #{usercity,jdbcType=VARCHAR},
+      usersex = #{usersex,jdbcType=INTEGER},
+      useraddress = #{useraddress,jdbcType=VARCHAR},
+      useremail = #{useremail,jdbcType=VARCHAR},
+      usertype = #{usertype,jdbcType=VARCHAR},
+      usercreatetime = #{usercreatetime,jdbcType=TIMESTAMP},
+      userlogintime = #{userlogintime,jdbcType=TIMESTAMP},
+      userphone = #{userphone,jdbcType=VARCHAR},
+      userinstitution = #{userinstitution,jdbcType=VARCHAR},
+      userstatus = #{userstatus,jdbcType=INTEGER},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR},
+      ext4 = #{ext4,jdbcType=VARCHAR},
+      ext5 = #{ext5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
